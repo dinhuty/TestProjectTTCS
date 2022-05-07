@@ -28,7 +28,7 @@
 .header__menu, .header__user{
     display: flex;
     line-height: 80px;
-    font-size: 20px;
+    font-size: 1.2rem;
     font-weight: bold;
 }
 .header__menu{
@@ -41,12 +41,13 @@
 .header__menu-item:hover, .header__user-item:hover{
     color: var(--orange);
 }
-.header__searchform{
+
+/* .header__searchform{
     align-self: center;
     margin-left: 150px;
     position: relative;
-}
-.search{
+} */
+/* .search{
     background-color: var(--white);
     border: 0;
     width: 400px;
@@ -56,27 +57,28 @@
     font-size: 14px;
     font-weight: 300;
 
-}
+} */
 .btn_search{
-    background-color: var(--white);
-    color: var(--black);
-    border: 0;
-    position: absolute;
-    right: 0;
-    top: 0;
+    /* background-color: var(--white); */
+    color: var(--white);
+    border-right: 1px solid var(--white);
     cursor: pointer;
     padding: 12px 15px;
-    font-size: 14px;
-    border-radius: 5px;
+    font-size: 1rem;
+    margin-right: 20px;
 
 }
 .btn_search:hover{
     color: var(--orange);
 }
-.search:focus{
-    outline: 0 !important;
-    border: 0 !important;
+.header__active{
+    color: var(--orange);
+    font-size: 1.2rem;
+    text-shadow: 2px 2px 8px var(--orange);
+    /* box-shadow : 0 0 2px 0 var(--orange) inset, 0 0 20px 2px var(--orange); */
+
 }
+
 .header__user{
     position: absolute;
     right: 40px;
@@ -158,11 +160,12 @@
 }
 .header__content-btn:hover{
     background-color: var(--orange);
+    box-shadow : 0 0 2px 0 var(--orange) inset, 0 0 20px 2px var(--orange);
     text-shadow: none;
 
 }
 .icon.fa-solid{
-    font-size: 20px;
+    font-size: 0.8rem;
 }
 @keyframes moveInleft {
     0% {
@@ -171,7 +174,7 @@
     }
 
     80% {
-        transform: translateX(10px);
+        transform: translateX(500px);
     }
     100% {
         opacity: 1;
@@ -185,7 +188,7 @@
     }
 
     80% {
-        transform: translateY(-10px);
+        transform: translateY(-500px);
     }
     100% {
         opacity: 1;
@@ -199,7 +202,7 @@
     }
 
     80% {
-        transform: translateX(-10px);
+        transform: translateX(-500px);
     }
     
     100% {

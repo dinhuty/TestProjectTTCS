@@ -1,8 +1,9 @@
 :root{
   --black: rgb(20, 20, 20);
   --white: #e5e5e5;
-  --orange: #dd9219;
+  --orange: #ff6500;
   --gray: #8a8a8a;
+  --dark-gray: ##343a40;
 }
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;1,500&display=swap');
 *{
@@ -15,8 +16,10 @@ html{
   font-family: 'Poppins', sans-serif;
   width: 100%;
   height: 100vh;
+  font-size: 16px;
   list-style: none;
   background-color: var(--black);
+  color: var(--white);
 }
 a{
   text-decoration: none;

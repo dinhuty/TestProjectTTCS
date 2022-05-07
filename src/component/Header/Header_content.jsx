@@ -10,7 +10,7 @@ export default function Header_content() {
             <div className="header__container">
                 <p className="header__content-title">Avengers</p>
                 <p className="header__content-decription">Biệt đội siêu anh hùng</p>
-        <Link to="/" className='link'><div className='header__content-btn'><i className="icon fa-solid fa-play"></i>Xem ngay</div></Link>
+        <Link to="/detail_film" className='link'><div className='header__content-btn'><i className="icon fa-solid fa-play"></i>Xem ngay</div></Link>
         </div>
         </div>
     </div>

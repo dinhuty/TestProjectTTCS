@@ -1,0 +1,160 @@
+.login, .register{
+    /* background-color: pink; */
+    width: 600px;
+    height: 900px;
+    padding-top: 120px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+.login__title{
+    font-size: 35px;
+    color: var(--orange);
+
+}
+.avatar{
+    font-size: 100px;
+    color: var(--orange);
+    animation-name: moveInRight2;
+    animation-duration: 2s;
+}
+.login__form{
+    width: 450px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+
+}
+.login__form>label{
+    font-size: 20px;
+    color: var(--orange);
+    margin-bottom: 5px;
+    margin-top: 20px;
+}
+.login__form>input{
+    height: 40px;
+    border-radius: 5px;
+    padding: 10px;
+    border: none;
+    animation-name: moveInleft2;
+    animation-duration: 2s;
+    transition: all .15s ease-in-out;
+
+    
+
+}
+.login__form>input:focus{
+    border: none;
+    outline: none;
+    box-shadow : 0 0 2px 0 var(--orange) inset, 0 0 20px 2px var(--orange);
+
+
+}
+.login__form>div{
+    display: flex;
+    justify-content: space-between;
+    color : dodgerblue;
+    margin-top: 30px;
+}
+.login__fw{
+    color: dodgerblue;
+}
+.login__fw:hover{
+    color: var(--orange);
+}
+.login__form>button{
+    width: 50%;
+    height: 50px;
+    background-color: var(--orange);
+    /* border: 1px solid var(--orange); */
+    align-self: center;
+    border: none;
+    border-radius: 10px;
+    transition: all .15s ease-in-out;
+    /* transition: border-radius 1s ease; */
+    margin-top: 100px;
+    animation-name: moveInBottom2;
+    animation-duration: 2s;
+}
+.login__form>button:hover{
+    outline: none;
+    border: none;
+    box-shadow: 0 0 10px 0 var(--orange) inset, 0 0 20px 2px var(--orange);
+}
+/* Tạm thời */
+/* .fill-left{
+    position: relative; */
+    /* color: #a972cb */
+/* } */
+/* .fill-left>p{
+    z-index: 9999;
+}
+    
+.fill-left:before {
+    content: "";
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    height: 0%;
+    width: 100%;
+    border-radius: 10px;
+    background-color: var(--orange);
+    transition: all 0.5s ease;
+  }
+  
+.fill-left:hover:before {
+    height: 100%;
+    opacity: 0.6;
+  } */
+/* Tạm thời */
+
+/* keyframe */
+@keyframes moveInleft2 {
+    0% {
+        opacity: 0;
+        transform: translateX(-150px);
+    }
+
+    80% {
+        transform: translateX(10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(0);
+    }
+}
+@keyframes moveInBottom2 {
+    0% {
+        opacity: 0;
+        transform: translateY(150px);
+    }
+
+    80% {
+        transform: translateY(-10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(0);
+    }
+}
+@keyframes moveInRight2 {
+    0% {
+        opacity: 0;
+        transform: translateX(150px);
+    }
+
+    80% {
+        transform: translateX(-10px);
+    }
+    
+    100% {
+        opacity: 1;
+        transform: translate(0);
+    }
+
+}

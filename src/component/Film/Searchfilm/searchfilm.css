@@ -1,3 +1,4 @@
-h1{
+.searchfilm>h1{
+    margin: 50px 0px;
     color: var(--white);
 }

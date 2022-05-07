@@ -1,0 +1,34 @@
+
+.search__film{
+    width: 50%;
+    /* background-color: red; */
+    padding: 150px 0px;
+    height: auto;
+    margin: auto;
+}
+.search__film-form{
+    width: 100%;
+    height: auto;
+    text-align: center;
+}
+.search__film-input{
+    width: 70%;
+    height: 50px;
+    border-radius: 5px;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: none;
+    outline: none;
+    animation-name: moveInleft2;
+    animation-duration: 2s;
+    transition: all .15s ease-in-out;
+
+}
+.search__film-input:focus{
+    box-shadow : 0 0 2px 0 var(--orange) inset, 0 0 20px 2px var(--orange);
+
+}
+.search__film-title, .search__film-item{
+    transition: all 1s linear;
+}
