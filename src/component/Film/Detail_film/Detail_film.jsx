@@ -1,9 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './detail.css'
+import { Link } from 'react-router-dom';
 import Rating from '@mui/material/Rating';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import AnimationPages from '../../Animation/AnimationPages';
+import { MovieContext } from '../../Provider/MovieProvider';
+import { useParams } from 'react-router-dom';
 
 
 export default function Detail_film() {
@@ -12,7 +15,7 @@ export default function Detail_film() {
 
     },[])
 
-    // testlaoding
+    // testloading
     const [loading,setLoading] = useState(true)
     
     useEffect(() => {
@@ -21,37 +24,41 @@ export default function Detail_film() {
         setLoading(false)    
       }, 1000);
     },[])
-    console.log(loading)
-
-    // endtest
-
-    // const [add_desc,setAdd_desc] = useState('Hiện thêm')
     const [desc__active,setDesc__active] = useState(true)
+    // getid
+    const movies = useContext(MovieContext)
+    const { movieID } = useParams();
+    console.log(movieID)
+    const thisMovie = movies.find(movie => movie.movie._id === movieID)
+    // console.log(thisMovie)
+    const movies_add = movies.filter ((movie) => movie.movie._id !== movieID)
+    console.log(movies_add)
 
   return (
     <AnimationPages>
     {loading ? (
        <div className="loading">
        <div className='loading__content'></div>
-       <div><h1>Loading</h1></div>
+       <div><h1>Dinhuty</h1></div>
      </div> 
     )
       : (
         <div className='detailfilm'>
         <div className="detail__container">
-              <iframe src="https://www.youtube.com/embed/MiHJPa7J7As" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="allowfullscreen" mozallowfullscreen="mozallowfullscreen" msallowfullscreen="msallowfullscreen" oallowfullscreen="oallowfullscreen" webkitallowfullscreen="webkitallowfullscreen"></iframe>
+              <iframe src={thisMovie.link_embed} frameBorder="0" allowFullScreen="true" webkitallowfullscreen="true" mozallowfullscreen="true" oallowfullscreen="true" msallowfullscreen="true"></iframe>
         </div>
         <div className={desc__active ? 'detail__film-description' : 'detail__film-description desc__active'}>
-        {/* <div className="detail__film-description"> */}
-            <p className='film__description-title'>WEST HAM - ARSENAL: HÀNG THỦ TỎA SÁNG, KỊCH BẢN DERBY LONDON HẤP DẪN | NGOẠI HẠNG ANH 21/22</p>
+            <p className='film__description-title'>{thisMovie.movie.name}</p>
             <p>Đánh giá</p>
             <Stack spacing={1}>
               <Rating name="size-medium" defaultValue={2} className="film__description-rate" />
             </Stack>
-            <p className='film__description-desc'>WEST HAM - ARSENAL: HÀNG THỦ TỎA SÁNG, CUỘC ĐUA TOP 4 KHẮC NGHIỆT | NGOẠI HẠNG ANH 21/22</p>
-            <p className='film__description-desc'>Thắng lợi này giúp cho Arsenal tiếp tục đứng ở vị trí thứ 4 với 63 điểm , họ đang hơn đối thủ cạnh tranh trực tiếp của mình là Tottenham 2 điểm , vòng đầu tiếp theo Arsenal sẽ chỉ phải tiếp đón Leeds trên sân nhà trong khi Tottenham sẽ phải làm khách trên sân Anfield của Liverpool trước khi 2 đội sẽ đụng độ nhau trong trận cầu quyết định cho tấm vé dự Champions League mùa sau</p>
-            <p className='film__description-desc'>Còn với West Ham , thất bại này khiến cho họ vẫn đứng ở vị trí thứ 7 với 52 điểm ( thua Man United 3 điểm ) , họ đang bị đối thủ đứng sau là Wolves bám sát với 3 điểm ít hơn nhưng West Ham đang đá nhiều hơn 1 trận , tuy nhiên 4 trận đấu còn lại của Wolves khá căng khi họ lần lượt phải thi đấu với Chelsea - Man City - Norwich - Liverpool .</p>
-            <p className='film__description-desc'>#ngoạihạnganh #westham #arsenal</p>
+            <p className='film__description-desc'>{thisMovie.movie.origin_name}</p>
+            <p className='film__description-desc'>Thể loại: {thisMovie.movie.category[0].name}</p>
+            <p className='film__description-desc'>Quốc gia: {thisMovie.movie.country[0].name}</p>
+            <p className='film__description-desc'>Ngày phát hành: {thisMovie.movie.modified.time}</p>
+            <p className='film__description-desc'>{`${thisMovie.movie.content}`}</p>
+           
             
         </div>
         <div className='desc__btn' onClick={() => { setDesc__active(!desc__active)}}>{desc__active ? 'Hiện thêm' : 'Ẩn bớt'}</div>
@@ -82,39 +89,15 @@ export default function Detail_film() {
         </div>
         {/* Tạm thời */}
         <h1>Phim khác</h1>
-        <div className="trendfilm__container1">
-            <div className="trendfilm__container-item">
-                    <img src="https://occ-0-325-395.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABS2SrvalX8NS2C7tgbftN8yfVPaX3RWGQ_6TbxxnKKlUFsCQxSMzXnq5I78X0fm1KKH7W63ElWr2fmRmG_-M_PtgkZ0.jpg?r=f0d" alt="" />
-            </div>
-            <div className="trendfilm__container-item">
-                <img src="https://occ-0-325-395.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABS2SrvalX8NS2C7tgbftN8yfVPaX3RWGQ_6TbxxnKKlUFsCQxSMzXnq5I78X0fm1KKH7W63ElWr2fmRmG_-M_PtgkZ0.jpg?r=f0d" alt="" />
-            </div>
-            <div className="trendfilm__container-item">
-                <img src="https://occ-0-325-395.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABS2SrvalX8NS2C7tgbftN8yfVPaX3RWGQ_6TbxxnKKlUFsCQxSMzXnq5I78X0fm1KKH7W63ElWr2fmRmG_-M_PtgkZ0.jpg?r=f0d" alt="" />
-            </div>
-            <div className="trendfilm__container-item">
-                <img src="https://occ-0-325-395.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABS2SrvalX8NS2C7tgbftN8yfVPaX3RWGQ_6TbxxnKKlUFsCQxSMzXnq5I78X0fm1KKH7W63ElWr2fmRmG_-M_PtgkZ0.jpg?r=f0d" alt="" />
-            </div>
-            <div className="trendfilm__container-item">
-                <img src="https://occ-0-325-395.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABS2SrvalX8NS2C7tgbftN8yfVPaX3RWGQ_6TbxxnKKlUFsCQxSMzXnq5I78X0fm1KKH7W63ElWr2fmRmG_-M_PtgkZ0.jpg?r=f0d" alt="" />
-            </div>
-            <div className="trendfilm__container-item">
-                    <img src="https://occ-0-325-395.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABS2SrvalX8NS2C7tgbftN8yfVPaX3RWGQ_6TbxxnKKlUFsCQxSMzXnq5I78X0fm1KKH7W63ElWr2fmRmG_-M_PtgkZ0.jpg?r=f0d" alt="" />
-            </div>
-            <div className="trendfilm__container-item">
-                <img src="https://occ-0-325-395.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABS2SrvalX8NS2C7tgbftN8yfVPaX3RWGQ_6TbxxnKKlUFsCQxSMzXnq5I78X0fm1KKH7W63ElWr2fmRmG_-M_PtgkZ0.jpg?r=f0d" alt="" />
-            </div>
-            <div className="trendfilm__container-item">
-                <img src="https://occ-0-325-395.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABS2SrvalX8NS2C7tgbftN8yfVPaX3RWGQ_6TbxxnKKlUFsCQxSMzXnq5I78X0fm1KKH7W63ElWr2fmRmG_-M_PtgkZ0.jpg?r=f0d" alt="" />
-            </div>
-            <div className="trendfilm__container-item">
-                <img src="https://occ-0-325-395.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABS2SrvalX8NS2C7tgbftN8yfVPaX3RWGQ_6TbxxnKKlUFsCQxSMzXnq5I78X0fm1KKH7W63ElWr2fmRmG_-M_PtgkZ0.jpg?r=f0d" alt="" />
-            </div>
-            <div className="trendfilm__container-item">
-                <img src="https://occ-0-325-395.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABS2SrvalX8NS2C7tgbftN8yfVPaX3RWGQ_6TbxxnKKlUFsCQxSMzXnq5I78X0fm1KKH7W63ElWr2fmRmG_-M_PtgkZ0.jpg?r=f0d" alt="" />
-            </div>
-        </div>
-      
+        <div className="films__container" id="detail_film_container">
+          {movies_add && movies_add.slice(0,8).map((movie) => (
+               <div className="films__container-item" key={movie.movie._id}>
+                    <Link to={`/films/${movie.movie._id}`}>
+                    <img className='films__img' src={movie.movie.thumb_url} alt="" />
+                    </Link>
+                </div>
+            ))}
+          </div>
     </div>
       )
   }

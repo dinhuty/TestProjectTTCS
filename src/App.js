@@ -18,7 +18,6 @@ import Films from "./component/Film/AllFilm/Films";
 
 
 
-
 function App() {
   const location = useLocation()
   return (
@@ -35,7 +34,7 @@ function App() {
           <Route path="/user/login" element={<Login />}/>
           <Route path="/user/register" element={<Register />}/>
           <Route path="/user/help" element={<Help />} />
-          <Route path="/detail_film" element={<Detail_film />} />
+          <Route path="/films/:movieID" element={<Detail_film />} />
         </Routes>
       </AnimatePresence>
       
