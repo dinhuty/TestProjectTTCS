@@ -1,6 +1,64 @@
 .help{
-    width: 100%;
-    padding: 300px;
+    max-width: 800px;
+    height: 1000px;
     animation-name: moveInleft2;
     animation-duration: 2s;
+    padding-top: 120px;
+    margin: auto;
+    /* display: flex; */
+}
+.help__title{
+    margin: auto;
+    color: var(--orange);
+    height: 60px;
+    line-height: 50px;
+    border-image-slice: 1;
+    border-image-source: linear-gradient(to left, var(--black), #f4d883);
+    font-size: 40px;
+    font-weight: bold;
+    margin-bottom: 50px;
+}
+.help__title2{
+    margin: auto;
+    color: var(--orange);
+    height: 60px;
+    line-height: 50px;
+    border-image-slice: 1;
+    border-image-source: linear-gradient(to left, var(--black), #f4d883);
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+.help__container>input{
+    width: 70%;
+    height: 50px;
+    border-radius: 5px;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: none;
+    outline: none;
+    animation-name: moveInleft2;
+    animation-duration: 2s;
+    transition: all .15s ease-in-out;
+}
+textarea{
+    width: 70%;
+    height: 200px;
+    border-radius: 5px;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: none;
+    outline: none;
+    animation-name: moveInleft2;
+    animation-duration: 2s;
+    transition: all .15s ease-in-out;
+}
+.help__container>input:focus{
+    box-shadow : 0 0 2px 0 var(--orange) inset, 0 0 20px 2px var(--orange);
+
+}
+#btn-help{
+    width: 250px;
 }

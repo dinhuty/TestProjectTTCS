@@ -7,7 +7,20 @@ export default function  Help() {
   return (
     <AnimationPages>
       <div className='help'>
-        <h1>Waiting.......</h1>
+          <p className="help__title">
+            Hỗ trợ
+          </p>
+          <div className="help__container">
+            <input type="text" placeholder='Bạn cần hỗ trợ?' />
+            <p className="help__title2">
+            Điền thông tin
+            </p>
+            <input type="name" placeholder='Họ tên' />
+            <input type="gmail" placeholder='Gmail' />
+            <input type="address" placeholder='Địa chỉ' />
+            <textarea placeholder="Type your message here...."  required></textarea>
+            <button id='btn-help' className='fill-left btnuser' type="submit">Gửi</button>
+          </div>
       </div>
     </AnimationPages>
   )

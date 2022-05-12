@@ -3,17 +3,25 @@ import { MovieContext } from '../../Provider/MovieProvider';
 import { Link } from 'react-router-dom';
 import AnimationPages from '../../Animation/AnimationPages'
 import './search.css'
+// test aos
+import Aos from 'aos';
+import "aos/dist/aos.css"
+
 
 export default function Search() {
+    useEffect(() => {
+        Aos.init({duration: 2000})
+        window.scrollTo(0, 0)
+        },[])
     const movies = useContext(MovieContext)
-    const arrFilm =['Demo search1','Demo search2',
-                    'Demo search3','dog','cat','banana','mongo','Demo search4',
-                    'Demo search1','film type2',
-                    'film type3', 'film type4',
-                    'film tap1','film type1 tap1',
-                    'film tap3', 'type tapx']
+    // const arrFilm =['Demo search1','Demo search2',
+    //                 'Demo search3','dog','cat','banana','mongo','Demo search4',
+    //                 'Demo search1','film type2',
+    //                 'film type3', 'film type4',
+    //                 'film tap1','film type1 tap1',
+    //                 'film tap3', 'type tapx']
     const [moviess,setMoviess] = useState(null)
-    const [films,setFilms] = useState(arrFilm)
+    // const [films,setFilms] = useState(arrFilm)
     const [kq,setKq] = useState(null)
 
     function _onKeyUp(e) {
@@ -21,13 +29,13 @@ export default function Search() {
             movie.movie.name.toLowerCase().includes(e.target.value.toLowerCase())
         )
         setMoviess(movies_search)
-        const result_search = arrFilm.filter((item) =>       
-             item.toLowerCase().includes(e.target.value.toLowerCase())
-        )
+        // const result_search = arrFilm.filter((item) =>       
+        //      item.toLowerCase().includes(e.target.value.toLowerCase())
+        // )
         setKq(e.target.value)
         
-        console.log(result_search)
-        setFilms(result_search)
+        // console.log(result_search)
+        // setFilms(result_search)
     }
   return (
       <AnimationPages>
@@ -37,7 +45,7 @@ export default function Search() {
             <input
                 className='search__film-input'
                 onChange={_onKeyUp}
-                placeholder="Search"
+                placeholder="Nhập tên phim"
             />
 
         </form>
@@ -52,11 +60,10 @@ export default function Search() {
              </div> */}
         {moviess ? (
                 <AnimationPages>
-
                 <div className="films__container">
-                {moviess && moviess.map((movie) => (
-                     <div className="films__container-item" key={movie.movie._id}>
-                          <Link to={`/films/${movie.movie._id}`}>
+                {moviess && moviess.slice(0,16).map((movie) => (
+                     <div className="films__container-item" key={movie.movie._id} data-aos="fade-up">
+                          <Link to={`/films/${movie.movie.slug}`}>
                           <img className='films__img' src={movie.movie.thumb_url} alt="" />
                           </Link>
                       </div>
@@ -66,10 +73,10 @@ export default function Search() {
             ) :
             (
                 <div className="films__container">
-                {movies && movies.map((movie) => (
-                     <div className="films__container-item" key={movie.movie._id}>
-                          <Link to={`/films/${movie.movie._id}`}>
-                          <img className='films__img' src={movie.movie.thumb_url} alt="" />
+                {movies && movies.slice(0,12).map((movie) => (
+                     <div className="films__container-item" key={movie.movie._id} data-aos="fade-up">
+                          <Link to={`/films/${movie.movie.slug}`}>
+                          <img  className='films__img' src={movie.movie.thumb_url} alt="" />
                           </Link>
                       </div>
                   ))}

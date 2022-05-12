@@ -1,7 +1,8 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import './trendfilm.css'
 import { Link } from 'react-router-dom'
 import { MovieContext } from '../../Provider/MovieProvider'
+
 
 export default function Trendfilm() {
     const movies = useContext(MovieContext)
@@ -12,9 +13,9 @@ export default function Trendfilm() {
             Bảng xếp hạng
           </p>
           <div className="films__container">
-          {movies && movies.slice(0,6).map((movie) => (
+          {movies && movies.slice(3,9).map((movie) => (
                <div className="films__container-item" key={movie.movie._id}>
-                    <Link to={`/films/${movie.movie._id}`}>
+                    <Link to={`/films/${movie.movie.slug}`}>
                     <img className='films__img' src={movie.movie.thumb_url} alt="" />
                     </Link>
                 </div>

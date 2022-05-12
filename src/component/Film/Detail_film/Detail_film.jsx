@@ -3,7 +3,6 @@ import './detail.css'
 import { Link } from 'react-router-dom';
 import Rating from '@mui/material/Rating';
 import Stack from '@mui/material/Stack';
-import TextField from '@mui/material/TextField';
 import AnimationPages from '../../Animation/AnimationPages';
 import { MovieContext } from '../../Provider/MovieProvider';
 import { useParams } from 'react-router-dom';
@@ -14,7 +13,10 @@ export default function Detail_film() {
     window.scrollTo(0, 0)
 
     },[])
+    const handlOntop =() =>{
+    window.scrollTo(0, 0)
 
+    }
     // testloading
     const [loading,setLoading] = useState(true)
     
@@ -22,17 +24,17 @@ export default function Detail_film() {
       setTimeout(()=>{
 
         setLoading(false)    
-      }, 1000);
+      }, 500);
     },[])
     const [desc__active,setDesc__active] = useState(true)
     // getid
     const movies = useContext(MovieContext)
     const { movieID } = useParams();
-    console.log(movieID)
-    const thisMovie = movies.find(movie => movie.movie._id === movieID)
+    // console.log(movieID)
+    const thisMovie = movies.find(movie => movie.movie.slug === movieID)
     // console.log(thisMovie)
-    const movies_add = movies.filter ((movie) => movie.movie._id !== movieID)
-    console.log(movies_add)
+    const movies_add = movies.filter ((movie) => movie.movie.slug !== movieID)
+    // console.log(movies_add)
 
   return (
     <AnimationPages>
@@ -45,7 +47,7 @@ export default function Detail_film() {
       : (
         <div className='detailfilm'>
         <div className="detail__container">
-              <iframe src={thisMovie.link_embed} frameBorder="0" allowFullScreen="true" webkitallowfullscreen="true" mozallowfullscreen="true" oallowfullscreen="true" msallowfullscreen="true"></iframe>
+              <iframe src={thisMovie.link_embed} frameBorder="0" allowFullScreen={true} webkitallowfullscreen="true" mozallowfullscreen="true" oallowfullscreen="true" msallowfullscreen="true"></iframe>
         </div>
         <div className={desc__active ? 'detail__film-description' : 'detail__film-description desc__active'}>
             <p className='film__description-title'>{thisMovie.movie.name}</p>
@@ -68,7 +70,7 @@ export default function Detail_film() {
           <button><i className="fa-solid fa-paper-plane"></i></button>
         </div>
         <div className="film__comments-content">
-          <p>Dinh:</p>
+          <p>Dinh: {thisMovie.movie.country[0].name}</p>
           <p>Thắng lợi này giúp cho Arsenal tiếp tục đứng ở vị trí thứ 4 với 63 điểm </p>
         </div>
         <div className="film__comments-content">
@@ -92,8 +94,8 @@ export default function Detail_film() {
         <div className="films__container" id="detail_film_container">
           {movies_add && movies_add.slice(0,8).map((movie) => (
                <div className="films__container-item" key={movie.movie._id}>
-                    <Link to={`/films/${movie.movie._id}`}>
-                    <img className='films__img' src={movie.movie.thumb_url} alt="" />
+                    <Link to={`/films/${movie.movie.slug}`}>
+                    <img className='films__img' onClick={handlOntop} src={movie.movie.thumb_url} alt="" />
                     </Link>
                 </div>
             ))}

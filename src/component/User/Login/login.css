@@ -65,7 +65,7 @@
 .login__fw:hover{
     color: var(--orange);
 }
-.login__form>button{
+.btnuser{
     width: 50%;
     height: 50px;
     background-color: var(--orange);
@@ -79,7 +79,7 @@
     animation-name: moveInBottom2;
     animation-duration: 2s;
 }
-.login__form>button:hover{
+.btnuser:hover{
     outline: none;
     border: none;
     box-shadow: 0 0 10px 0 var(--orange) inset, 0 0 20px 2px var(--orange);

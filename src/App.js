@@ -15,6 +15,10 @@ import { AnimatePresence } from "framer-motion";
 import Search from "./component/Film/Searchfilm/Search";
 import News from "./component/News/News";
 import Films from "./component/Film/AllFilm/Films";
+import News_detail from "./component/News/News_detail";
+import Pagination from "./component/TestPagination/Pagination";
+import Authadmin from "./component/Admin/AuthAdmin/Authadmin";
+import { Outlet } from 'react-router';
 
 
 
@@ -23,22 +27,28 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <AnimatePresence exitBeforeEnter>
+
+
+      {/* <AnimatePresence exitBeforeEnter>
         <Routes key={location.pathname} location={location}>
-          {/* <Route path="/" element={<Header />} /> */}
-          <Route path="/" element={<Home/>} />
+          <Route path="/" element={ <Home/>} />
           <Route path="/result_search/:keyword" element={<Searchfilm />} />
           <Route path="/search" element={<Search/>} />
           <Route path="/news" element={<News />}/>
+          <Route path="/news/:newID" element={<News_detail />}/>
           <Route path="/films" element={<Films />} />
           <Route path="/user/login" element={<Login />}/>
           <Route path="/user/register" element={<Register />}/>
           <Route path="/user/help" element={<Help />} />
           <Route path="/films/:movieID" element={<Detail_film />} />
+          <Route path="/pagi" element={<Pagination />} />
         </Routes>
-      </AnimatePresence>
+      // </AnimatePresence> */}
+        <Outlet />
+
+
+      <Footer/>
       
-      <Footer></Footer>
     </div>
   );
 }

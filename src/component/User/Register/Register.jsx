@@ -23,7 +23,7 @@ export default function Register() {
           <Link to="/user/login" className='link login__fw'>Bạn đã có tài khoản?</Link>
             </div>
            
-            <button type="submit">Đăng ký</button>
+            <button  className='btnuser' type="submit">Đăng ký</button>
       </form>
     </div>
     </AnimationPages>

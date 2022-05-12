@@ -1,0 +1,20 @@
+.pagi{
+    height: 100vh;
+    width: 3000px;
+    padding-top: 300px;
+    background-color: rgba(255, 0, 0, 0.595);
+    margin: auto;
+}
+.flex-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .flex-container > div {
+  padding-top:10px;
+  }
+  
+ 
+  

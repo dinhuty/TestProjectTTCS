@@ -21,7 +21,7 @@ export default function Login() {
           <Link to="/" className='link login__fw'>Quên mật khẩu</Link>
           <Link to="/user/register" className='link login__fw'>Bạn chưa có tài khoản?</Link>
         </div>
-        <button className='fill-left' type="submit">Login</button>
+        <button className='fill-left btnuser' type="submit">Login</button>
       </form>
       </div>
     </AnimationPages>

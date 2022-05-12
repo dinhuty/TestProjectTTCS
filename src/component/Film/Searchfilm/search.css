@@ -1,6 +1,6 @@
 
 .search__film{
-    width: 50%;
+    max-width: 1200px;;
     /* background-color: red; */
     padding: 150px 0px;
     height: auto;
