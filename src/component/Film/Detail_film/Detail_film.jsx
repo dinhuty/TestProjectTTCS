@@ -6,6 +6,10 @@ import Stack from '@mui/material/Stack';
 import AnimationPages from '../../Animation/AnimationPages';
 import { MovieContext } from '../../Provider/MovieProvider';
 import { useParams } from 'react-router-dom';
+import { UsersContext } from '../../Provider/UserContextProvider';
+import { AuthContext } from '../../Provider/AuthUser';
+import usersApi from '../../Api/Api'
+
 
 
 export default function Detail_film() {
@@ -13,28 +17,50 @@ export default function Detail_film() {
     window.scrollTo(0, 0)
 
     },[])
-    const handlOntop =() =>{
-    window.scrollTo(0, 0)
-
-    }
     // testloading
-    const [loading,setLoading] = useState(true)
-    
+    const [loading,setLoading] = useState(false)
     useEffect(() => {
       setTimeout(()=>{
 
         setLoading(false)    
       }, 500);
     },[])
+    const handlOntop =() =>{
+      window.scrollTo(0, 0)
+    }
+    
+    
+   
     const [desc__active,setDesc__active] = useState(true)
     // getid
     const movies = useContext(MovieContext)
     const { movieID } = useParams();
-    // console.log(movieID)
     const thisMovie = movies.find(movie => movie.movie.slug === movieID)
-    // console.log(thisMovie)
     const movies_add = movies.filter ((movie) => movie.movie.slug !== movieID)
-    // console.log(movies_add)
+    // comment
+    const Comments = useContext(UsersContext)
+    var thisComments = Comments.comments.filter((cmt) => cmt.id_film === movieID)
+    const [thiscmt,setThiscmt] = useState(thisComments)
+    
+    // get user Current
+    const userAuth = useContext(AuthContext)
+    const [ndcmt,setNdcmt] = useState('')
+
+    const handleComment = (e) =>{
+      e.preventDefault();
+
+      if (userAuth.userAuth.stt){
+        setThiscmt([...thiscmt,{id_film: movieID,content: ndcmt,username: userAuth.userAuth.username}])
+        Comments.setComments([...Comments.comments,{id_film: movieID,content: ndcmt,username: userAuth.userAuth.username}])
+        usersApi.post('/comments',{id_film: movieID,content: ndcmt,username: userAuth.userAuth.username})
+      }else{
+        alert("Đăng nhập để cmt")
+      }
+    }
+ 
+        
+   
+    
 
   return (
     <AnimationPages>
@@ -45,6 +71,7 @@ export default function Detail_film() {
      </div> 
     )
       : (
+        thisMovie && 
         <div className='detailfilm'>
         <div className="detail__container">
               <iframe src={thisMovie.link_embed} frameBorder="0" allowFullScreen={true} webkitallowfullscreen="true" mozallowfullscreen="true" oallowfullscreen="true" msallowfullscreen="true"></iframe>
@@ -65,41 +92,39 @@ export default function Detail_film() {
         </div>
         <div className='desc__btn' onClick={() => { setDesc__active(!desc__active)}}>{desc__active ? 'Hiện thêm' : 'Ẩn bớt'}</div>
         <p className='film__comments-title'>Bình luận</p>
-        <div className="film__comments" placeholder='Nhập bình luận của bạn'>
-          <input type="text" placeholder='Nhập bình luận của bạn'/>
-          <button><i className="fa-solid fa-paper-plane"></i></button>
-        </div>
-        <div className="film__comments-content">
-          <p>Dinh: {thisMovie.movie.country[0].name}</p>
-          <p>Thắng lợi này giúp cho Arsenal tiếp tục đứng ở vị trí thứ 4 với 63 điểm </p>
-        </div>
-        <div className="film__comments-content">
-          <p>Dinh:</p>
-          <p>Thắng lợi này giúp cho Arsenal tiếp tục đứng ở vị trí thứ 4 với 63 điểm </p>
-        </div>
-        <div className="film__comments-content">
-          <p>Dinh:</p>
-          <p>Thắng lợi này giúp cho Arsenal tiếp tục đứng ở vị trí thứ 4 với 63 điểm </p>
-        </div>
-        <div className="film__comments-content">
-          <p>Dinh:</p>
-          <p>Thắng lợi này giúp cho Arsenal tiếp tục đứng ở vị trí thứ 4 với 63 điểm </p>
-        </div>
-        <div className="film__comments-content">
-          <p>Dinh:</p>
-          <p>Thắng lợi này giúp cho Arsenal tiếp tục đứng ở vị trí thứ 4 với 63 điểm </p>
-        </div>
-        {/* Tạm thời */}
+          <form action="" className="film__comments" onSubmit={handleComment} >
+          <input type="text"
+                 placeholder='Nhập bình luận của bạn'
+                 value={ndcmt}
+                 onChange={event => setNdcmt(event.target.value)}
+                 />
+          <button ><i className="fa-solid fa-paper-plane"></i></button>
+          </form>
+        {
+          thiscmt.length>0 ? thiscmt.map((cmt) =>(
+            <div className="film__comments-content" key={cmt.id}>
+              <p className='film__comments-nameuser'><i className="fa-solid fa-user-tie"></i>{cmt.username} :</p>
+              <p className='film__comments-cmt'>{cmt.content}</p>
+            </div>
+          )) 
+          : thisComments.map((cmt) =>(
+            <div className="film__comments-content" key={cmt.id}>
+              <p className='film__comments-nameuser'><i className="fa-solid fa-user-tie"></i>{cmt.username} :</p>
+              <p className='film__comments-cmt'>{cmt.content}</p>
+            </div>
+          ))
+        }
         <h1>Phim khác</h1>
         <div className="films__container" id="detail_film_container">
           {movies_add && movies_add.slice(0,8).map((movie) => (
                <div className="films__container-item" key={movie.movie._id}>
                     <Link to={`/films/${movie.movie.slug}`}>
-                    <img className='films__img' onClick={handlOntop} src={movie.movie.thumb_url} alt="" />
+                      <img className='films__img' onClick={handlOntop} src={movie.movie.thumb_url} alt="" />
                     </Link>
                 </div>
             ))}
           </div>
+        {/* <div className='noti'>Thong báo</div> */}
     </div>
       )
   }

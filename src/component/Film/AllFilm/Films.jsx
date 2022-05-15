@@ -16,8 +16,8 @@ export default function Films() {
  
   const movies = useContext(MovieContext)
   var moviePage = []
-  for (var i=0; i<movies.length; i=i+12) {
-    moviePage.push(movies.slice(i,i+12));
+  for (var i=0; i<movies.length; i=i+18) {
+    moviePage.push(movies.slice(i,i+18));
     }
   const [currentPage, setCurrentPage] = useState(1)
   let maxPages = moviePage.length
@@ -28,8 +28,8 @@ export default function Films() {
   let rightSide = currentPage + 1
   if(rightSide>maxPages) rightSide = maxPages
 // test
-  if(leftSide===1) rightSide=3
-  if (rightSide ===maxPages) leftSide=maxPages-2
+  // if(leftSide===1) rightSide=3
+  // if (rightSide ===maxPages) leftSide=maxPages-2
 
   for (let number = leftSide ; number <= rightSide; number++) {
     items.push(
@@ -61,7 +61,7 @@ export default function Films() {
           <div className="films__container">
             
           {moviePage[currentPage-1] && moviePage[currentPage-1].map((movie) => (
-               <div data-aos="flip-left" className="films__container-item" key={movie.movie._id}>
+               <div data-aos="zoom-in" className="films__container-item" key={movie.movie._id}>
                     <Link to={`/films/${movie.movie.slug}`}>
                     <img className='films__img' src={movie.movie.thumb_url} alt="" />
                     </Link>

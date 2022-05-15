@@ -1,5 +1,5 @@
 import axios from 'axios'
 
 export default axios.create({
-    baseURL: "http://localhost:3006/",
+    baseURL: "https://627cdd24e5ac2c452af86546.mockapi.io/",
 })

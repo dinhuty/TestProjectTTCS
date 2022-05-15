@@ -83,6 +83,43 @@
     position: absolute;
     right: 40px;
 }
+.header__user-if{
+    margin-right: 30px;
+    cursor: pointer;
+    position: relative;
+}
+.header__user-if .header__user-name{
+    color: aqua;
+
+}
+.header__user-more{
+    position: absolute;
+    width: 120%;
+    top: 80px;
+    right: 0;
+    font-size: 14px;
+    height: auto;
+    display: none;
+    background-color: var(--orange);
+    border-radius: 10px;
+    z-index: 999;
+}
+.header__user-more>li{
+    color: var(--white);
+    line-height: 40px;
+    padding-left: 20px;
+    font-weight: 400 ;
+}
+
+.header__user-if:hover .header__user-more{
+    display: block;
+
+}
+.header__user-more>li:hover{
+    background-color: orangered;
+    border-radius: 10px;
+
+}
 .icon{
     margin-right: 8px;
 }

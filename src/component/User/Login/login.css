@@ -9,6 +9,12 @@
     align-items: center;
 
 }
+.error_submit{
+    color: red;
+    margin-top: 20px;
+    font-size: 16px;
+    margin-bottom: -20px;
+}
 .login__title{
     font-size: 35px;
     color: var(--orange);

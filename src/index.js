@@ -27,6 +27,8 @@ import Films from "./component/Film/AllFilm/Films";
 import News_detail from "./component/News/News_detail";
 import Pagination from "./component/TestPagination/Pagination";
 import Authadmin from "./component/Admin/AuthAdmin/Authadmin";
+import UserContextProvider from './component/Provider/UserContextProvider';
+import AuthUserContextProvider from './component/Provider/AuthUser';
 
 // 
 
@@ -48,6 +50,8 @@ root.render(
       <React.StrictMode>
       {/* <BrowserRouter basename='/TestProjectTTCS'>  */}
     <MovieProvider>
+      <UserContextProvider>
+        <AuthUserContextProvider>
       <NewsProvider>
       <BrowserRouter>
       <Routes>
@@ -68,6 +72,8 @@ root.render(
       </Routes>
       </BrowserRouter>
       </NewsProvider>
+      </AuthUserContextProvider>
+      </UserContextProvider>
     </MovieProvider>
         
     </React.StrictMode>

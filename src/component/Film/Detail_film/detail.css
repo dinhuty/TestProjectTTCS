@@ -94,7 +94,25 @@
 .film__comments-content{
     padding-top: 10px;
     margin: 15px 0px;
-    border-bottom: 1px solid var(--gray);
+}
+.film__comments-nameuser{
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--orange);
+    margin-bottom: 5px;
+}
+.film__comments-nameuser>i{
+    margin-right: 5px;
+
+}
+.film__comments-cmt{
+    margin-bottom: 2px;
+    line-height: 40px;
+    padding-left: 5px;
+    background-color: rgba(255, 194, 20, 0.1);
+    /* border: 1px solid #d5cfcf; */
+    border-radius: 5px;
+
 }
 /* Tạm thời */
 .trendfilm__container1{

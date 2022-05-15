@@ -1,6 +1,10 @@
-import React, { useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Link, NavLink } from 'react-router-dom';
 import logo from '../../logo.png'
+import { AuthContext } from '../Provider/AuthUser';
+import { UsersContext } from '../Provider/UserContextProvider';
+import { ToastContainer, toast } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
 import './header.css'
 
 export default function Header() {
@@ -14,7 +18,16 @@ export default function Header() {
             setOk(true)
         }
       });
-  
+    const userCurrent =useContext(AuthContext)
+     useEffect(() =>{
+        if (userCurrent.userAuth.stt){
+            toast.warning('Đăng nhập thành công')
+         
+      }
+     },[userCurrent.userAuth.stt])
+     const handleLogout = () =>{
+        userCurrent.setUserStt({ stt:false, username: ''})
+     }
   return (
     <div className="header">
         <nav className={ok ? 'header__nav' : 'header__nav header__nav-bg'}>
@@ -23,7 +36,7 @@ export default function Header() {
                     <img className='header__logo-item' src={logo} alt="" />
                 </Link>
             </div>
-            
+            {/* <ToastContainer /> */}
             <div className="header__menu">
                 <NavLink to="/" className={(navData) => navData.isActive ? "header__active link" : "link" }>
                     <li className="header__menu-item">Home</li>
@@ -48,12 +61,26 @@ export default function Header() {
                 <NavLink to="/search" className={(navData) => navData.isActive ? "header__active link" : "link" }  >
                     <i className="fa-solid fa-magnifying-glass btn_search"></i>
                 </NavLink>
-                <NavLink to="/user/login" className={(navData) => navData.isActive ? "header__active link" : "link" }>
-                    <li className="header__user-item"><i className="fa-solid fa-right-to-bracket icon"></i>Đăng nhập</li>
-                </NavLink>
-                <NavLink to="/user/register" className={(navData) => navData.isActive ? "header__active link" : "link" }>
-                    <li className="header__user-item"><i className="fa-solid fa-user-plus icon"></i>Đăng ký</li>
-                </NavLink>
+                {userCurrent.userAuth.stt ? (<div className='header__user-if'>
+                    <div  className='header__user-name'>Hello {userCurrent.userAuth.username} <i className="fa-solid fa-caret-down"></i></div>
+                    <div className='header__user-more'>
+                        <li>Tài khoản</li>
+                        <li onClick={handleLogout}><i className="fa-solid fa-right-from-bracket"></i>Log out </li>
+                    </div>
+                
+                </div>) :
+                (
+                    <>
+                        <NavLink to="/user/login" className={(navData) => navData.isActive ? "header__active link" : "link" }>
+                        <li className="header__user-item"><i className="fa-solid fa-right-to-bracket icon"></i>Đăng nhập</li>
+                        </NavLink>
+                        <NavLink to="/user/register" className={(navData) => navData.isActive ? "header__active link" : "link" }>
+                            <li className="header__user-item"><i className="fa-solid fa-user-plus icon"></i>Đăng ký</li>
+                        </NavLink>
+                    </>
+                )
+                }
+               
                 <NavLink to="/user/help" className={(navData) => navData.isActive ? "header__active link" : "link" }>
                     <li className="header__user-item"><i className="fa-solid fa-circle-info icon"></i>Help</li>
                 </NavLink>
