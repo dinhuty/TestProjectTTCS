@@ -29,6 +29,8 @@ import Pagination from "./component/TestPagination/Pagination";
 import Authadmin from "./component/Admin/AuthAdmin/Authadmin";
 import UserContextProvider from './component/Provider/UserContextProvider';
 import AuthUserContextProvider from './component/Provider/AuthUser';
+import Films_manager from './component/Admin/Admin_Manager/Films_manager/Films_manager';
+import User_manager from './component/Admin/Admin_Manager/User_manager/User_manager';
 
 // 
 
@@ -68,7 +70,10 @@ root.render(
           <Route path="films/:movieID" element={<Detail_film />} />
           <Route path="pagi" element={<Pagination />} />
         </Route>
-        <Route path='/admin' element={<Authadmin />} />
+        <Route path='/admin'element={<Authadmin /> } >
+          <Route path="films" element={ <Films_manager/>} />
+          <Route path="users" element={ <User_manager/>} />
+        </Route>
       </Routes>
       </BrowserRouter>
       </NewsProvider>

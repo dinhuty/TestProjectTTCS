@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import AnimationPages from '../../Animation/AnimationPages'
 import usersApi from '../../Api/Api'
 import { AuthContext } from '../../Provider/AuthUser'
+import { SaveTokenInStorage } from '../../Provider/SaveToken/SaveTokenInStorage'
 import { UsersContext } from '../../Provider/UserContextProvider'
 
 export default function Register() {
@@ -10,10 +11,10 @@ export default function Register() {
   let navigate = useNavigate()
 
   const users = useContext(UsersContext)
-  const [newuser,setNewuser] = useState(null)
-  const [newpassword,setNewpassword] = useState(null)
-  const [repass,setRepass] = useState(null)
-  const [error,setError] = useState(null)
+  const [newuser,setNewuser] = useState('')
+  const [newpassword,setNewpassword] = useState('')
+  const [repass,setRepass] = useState('')
+  const [error,setError] = useState('')
   const AuthUser = useContext(AuthContext)
   useEffect(() =>{
     if(AuthUser.userAuth.stt) {
@@ -26,16 +27,24 @@ export default function Register() {
       setError('Tài khoản đã tồn tại!')
     }else if(newuser.trim() === '' || newpassword.trim() === ''){
       setError('Tài khoản và mật khẩu không hợp lệ')
-    }else if(repass != newpassword){
+    }else if(newuser.trim().length <8 || newpassword.trim().length <8){
+      setError('Tài khoản và mật khẩu phải lớn hơn 8 kí tự')
+    }
+    else if(repass !== newpassword){
       setError('Mật khẩu không khớp')
     }
     else{
       usersApi.post('/users',{username: newuser,password: newpassword})
       users.setUsers([...users.users,{username: newuser,password: newpassword}])
-      // navigate('/user/login')
       AuthUser.setUserStt({
         stt: true,
-        username: newuser
+        username: newuser,
+        password: newpassword
+      })
+      SaveTokenInStorage({
+        stt: true,
+        username: newuser,
+        password: newpassword
       })
       navigate('/')
     }
@@ -68,7 +77,7 @@ export default function Register() {
             <input type="new-password"
              placeholder='Re-password'
              value={repass}
-            onChange={event => setRepass(event.target.value)} />
+             onChange={event => setRepass(event.target.value)} />
       
             <div>
           <Link to="/" className='link login__fw'>Đăng ký sau</Link>

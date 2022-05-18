@@ -9,8 +9,6 @@ import './header.css'
 
 export default function Header() {
     const [ok,setOk] = useState(true)
-    // const [keyword,setkeyword] = useState('')
-
     window.addEventListener("scroll", () => {
         if (window.scrollY > 100) {
             setOk(false)
@@ -26,7 +24,9 @@ export default function Header() {
       }
      },[userCurrent.userAuth.stt])
      const handleLogout = () =>{
-        userCurrent.setUserStt({ stt:false, username: ''})
+        userCurrent.setUserStt({ stt:false, username: '',password: ''})
+        localStorage.removeItem('User')
+        window.location.reload();
      }
   return (
     <div className="header">
@@ -42,21 +42,12 @@ export default function Header() {
                     <li className="header__menu-item">Home</li>
                 </NavLink>
                 <NavLink to="/films" className={(navData) => navData.isActive ? "header__active link" : "link" } >
-                    <li className="header__menu-item">Phim hay</li>
+                    <li className="header__menu-item">Movies</li>
                 </NavLink>
                 <NavLink to="/news" className={(navData) => navData.isActive ? "header__active link" : "link" } >
                     <li className="header__menu-item">Tin tức</li>
                 </NavLink>
             </div>
-            {/* <div className='header__searchform' > */}
-                {/* <input type="text" className='search'placeholder='Tìm kiếm...' value={keyword} 
-                    onChange={event => setkeyword(event.target.value)}
-                /> */}
-                {/* <Link className='link'  to={keyword ? `/result_search/${keyword}` : "/result_search/noInput$999223" } state={{ keyword: keyword }} onClick ={() => setkeyword('')}>
-                    <i className="fa-solid fa-magnifying-glass btn_search"></i>
-                </Link> */}
-                
-            {/* </div> */}
             <div className="header__user">
                 <NavLink to="/search" className={(navData) => navData.isActive ? "header__active link" : "link" }  >
                     <i className="fa-solid fa-magnifying-glass btn_search"></i>

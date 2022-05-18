@@ -10,6 +10,7 @@ export default function  Help() {
           <p className="help__title">
             Hỗ trợ
           </p>
+        
           <div className="help__container">
             <input type="text" placeholder='Bạn cần hỗ trợ?' />
             <p className="help__title2">

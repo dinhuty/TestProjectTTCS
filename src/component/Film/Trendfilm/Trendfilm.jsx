@@ -13,7 +13,7 @@ export default function Trendfilm() {
             Bảng xếp hạng
           </p>
           <div className="films__container">
-          {movies && movies.slice(3,9).map((movie) => (
+          {movies.movies && movies.movies.slice(3,9).map((movie) => (
                <div className="films__container-item" key={movie.movie._id}>
                     <Link to={`/films/${movie.movie.slug}`}>
                     <img className='films__img' src={movie.movie.thumb_url} alt="" />

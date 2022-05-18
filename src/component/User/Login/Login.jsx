@@ -2,6 +2,7 @@ import React, { useContext, useState,useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import AnimationPages from '../../Animation/AnimationPages'
 import { AuthContext } from '../../Provider/AuthUser'
+import { SaveTokenInStorage } from '../../Provider/SaveToken/SaveTokenInStorage'
 import { UsersContext } from '../../Provider/UserContextProvider'
 import './login.css'
 
@@ -26,8 +27,15 @@ export default function Login() {
      if( users.users.find((user) => user.username === username & user.password === password)){
       AuthUser.setUserStt({
         stt: true,
-        username: username
+        username: username,
+        password: password
       })
+      SaveTokenInStorage({
+        stt: true,
+        username: username,
+        password: password
+      })
+      
       navigate(-1)
      }else{
       setError('Tài khoản hoặc mật khẩu không đúng')

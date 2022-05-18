@@ -14,7 +14,7 @@ const UserContextProvider = ({children}) =>{
            .catch(error => console.log(error))
         moviesAPI.get("/comments")
         .then(res => {
-        setComments(res.data);
+            setComments(res.data);
         })
         .catch(error => console.log(error))
        }, []);

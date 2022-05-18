@@ -14,7 +14,7 @@ const MovieProvider = ({children}) =>{
            .catch(error => console.log(error))
        }, []);
        return (
-           <MovieContext.Provider value={movies}>
+           <MovieContext.Provider value={{movies,setMovies}}>
                {children}
            </MovieContext.Provider>
        )

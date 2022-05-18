@@ -14,8 +14,6 @@ export default function News_detail() {
   return (
     <AnimationPages>
         <div className='news_detail'>
-                    {/* {thisNew.title} */}
-
         {thisNew && 
             (
                 <div className="news_detail__container">
@@ -26,7 +24,6 @@ export default function News_detail() {
                     <img className='news_detail-img' src={thisNew.img} alt="" />
                     <p className='news_detail-content'>{thisNew.content}</p>
                     <p className='news_detail-content'>{thisNew.content}</p>
-
                 </div>
             )
         }

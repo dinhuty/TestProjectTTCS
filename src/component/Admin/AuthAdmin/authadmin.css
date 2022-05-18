@@ -1,13 +1,31 @@
 .authadmin{
     max-width: 100%;
     height: 100vh;
-    margin: auto;
     display: flex;
     background-color: var(--orange);
     flex-direction: column;
     text-align: center;
     justify-content: center;
+    align-items: center;
     font-weight: 600;
+    position: relative;
+    
+}
+.form__admin{
+    margin: auto;
+}
+.option__manager{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: red;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    height: 50px;
+    z-index: 99999;
+
+    
 }
 .authadmin__title{
     font-size: 20px;
@@ -48,4 +66,10 @@
 }
 .authadmin__btn:hover{
     transform: scale(1.1);
+}
+.out__admin{
+    cursor: pointer;
+}
+.out__admin:hover , .title__manager:hover{
+    opacity: 0.6;
 }

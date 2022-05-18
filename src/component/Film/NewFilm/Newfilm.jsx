@@ -12,8 +12,8 @@ export default function Newfilm() {
     Aos.init({duration: 2000})
     },[])
   const movies = useContext(MovieContext)
-  const chinese_movies = movies.filter((movie) => movie.movie.country[0].name === "Trung Quốc")
-  const japan_movies = movies.filter((movie) => movie.movie.country[0].name === "Nhật Bản")
+  const chinese_movies = movies.movies.filter((movie) => movie.movie.country[0].name === "Trung Quốc")
+  const japan_movies = movies.movies.filter((movie) => movie.movie.country[0].name === "Nhật Bản")
 
   console.log(chinese_movies)
   return (
@@ -23,7 +23,7 @@ export default function Newfilm() {
         </p>
         <div className="films__container">
           {chinese_movies && chinese_movies.map((movie) => (
-               <div data-aos="fade-up" className="films__container-item" key={movie.movie._id}>
+               <div data-aos="fade-up" className="films__container-item" key={movie.movie.slug}>
                     <Link to={`/films/${movie.movie.slug}`}>
                     <img className='films__img' src={movie.movie.thumb_url} alt="" />
                     </Link>
@@ -35,7 +35,7 @@ export default function Newfilm() {
         </p>
         <div className="films__container">
           {japan_movies && japan_movies.map((movie) => (
-               <div data-aos="fade-up" className="films__container-item" key={movie.movie._id}>
+               <div data-aos="fade-up" className="films__container-item" key={movie.movie.slug}>
                     <Link to={`/films/${movie.movie.slug}`}>
                     <img className='films__img' src={movie.movie.thumb_url} alt="" />
                     </Link>
