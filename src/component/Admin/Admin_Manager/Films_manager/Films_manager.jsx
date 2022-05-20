@@ -147,7 +147,7 @@ export default function Films_manager() {
     setTimeout(() => {
       window.location.reload();
       
-    }, 1000);
+    }, 2500);
   }
   const toggleAdd = () => {
     setActive_add(!active_add)
