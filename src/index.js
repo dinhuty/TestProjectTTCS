@@ -50,11 +50,12 @@ root.render(
 
 
       <React.StrictMode>
-      {/* <BrowserRouter basename='/TestProjectTTCS'>  */}
     <MovieProvider>
       <UserContextProvider>
         <AuthUserContextProvider>
       <NewsProvider>
+      {/* <BrowserRouter basename='/TestProjectTTCS'>  */}
+
       <BrowserRouter>
       <Routes>
         <Route path='/'  element={<App />}>

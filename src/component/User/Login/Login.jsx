@@ -36,7 +36,7 @@ export default function Login() {
         password: password
       })
       
-      navigate(-1)
+      // navigate(-1)
      }else{
       setError('Tài khoản hoặc mật khẩu không đúng')
      }

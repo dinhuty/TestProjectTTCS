@@ -21,6 +21,25 @@
     animation: all .2s ease;
     font-size: 40px;    
 }
+.navigate{
+    display: flex;
+    margin-bottom: 12px;
+
+}
+.navigate>i{
+    font-size: 12px;
+    height: 19px;
+    margin: 0 10px -10px 10px;
+    align-self: center;
+}
+.navigate>.navigate-back-movies{
+    color: var(--orange);
+    cursor: pointer;
+
+}
+.navigate>.navigate-back-movies:hover{
+    opacity: 0.7;
+}
 .iframe{
     display: flex;
     flex-direction: column;

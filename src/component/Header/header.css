@@ -89,7 +89,8 @@
     position: relative;
 }
 .header__user-if .header__user-name{
-    color: aqua;
+    /* color: aqua; */
+    color: var(--orange);
 
 }
 .header__user-more{

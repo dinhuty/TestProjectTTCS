@@ -19,9 +19,15 @@ export default function Detail_film() {
     const [loading,setLoading] = useState(true)
     const [active_alert,setActive_alert] = useState(false)
     const [desc__active,setDesc__active] = useState(true)
-    const userAuth = useContext(AuthContext)
+    let time = new Date()
+    
+
     const { movieID } = useParams();
+
     const movies = useContext(MovieContext)
+    const userAuth = useContext(AuthContext)
+
+
     const thisMovie = movies.movies.find(movie => movie.movie.slug === movieID)
     const movies_add = movies.movies.filter ((movie) => movie.movie.slug !== movieID)
     const navigate = useNavigate();
@@ -57,20 +63,25 @@ export default function Detail_film() {
         setActive_alert(true)
       }
       setNdcmt('')
+      console.log(time.getHours() + 'h' + time.getMinutes()+ '-' + time.getFullYear() + '-' + (time.getMonth() + 1) + '-' + time.getDate())
     }
-        
+    const Loading = () => {
+      return (
+        <div className="loading">
+        <div className='loading__content'></div>
+        <div><h1>Dinhuty</h1></div>
+      </div> 
+     )
+    } 
        
     
 
   return (
     <AnimationPages>
-    {loading ? (
-       <div className="loading">
-       <div className='loading__content'></div>
-       <div><h1>Dinhuty</h1></div>
-     </div> 
-    )
-      : (
+    {loading ? 
+      <Loading />
+      :
+      (
         thisMovie && 
         <div className='detailfilm'>
             <div onClick={() => setActive_alert(false)} className={active_alert ? 'coating active_alert' : 'coating'}></div>
@@ -86,16 +97,22 @@ export default function Detail_film() {
               </NavLink>
             </div>
           </div>
+        <div className="navigate">
+          <p className='navigate-back-movies' onClick={() =>navigate("/films")}>Movies</p>
+        <i className="fa-solid fa-angle-right"></i>
+        <p>{thisMovie.movie.name}</p>
+        </div>
+
         <div className="detail__container">
               {
               userAuth.userAuth.stt ?  <iframe src={thisMovie.link_embed} frameBorder="0" allowFullScreen={true} webkitallowfullscreen="true" mozallowfullscreen="true" oallowfullscreen="true" msallowfullscreen="true"></iframe> :
               <div className='iframe'>
+                
                <i className="fa-solid fa-circle-exclamation"></i>
                 <p>Cần đăng nhập</p>
                </div>
             }
         </div>
-
         <div className={desc__active ? 'detail__film-description' : 'detail__film-description desc__active'}>
             <p className='film__description-title'>{thisMovie.movie.name}</p>
             <p>Đánh giá</p>

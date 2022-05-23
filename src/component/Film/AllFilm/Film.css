@@ -23,7 +23,7 @@
 /* allw */
 .films__container{
 
-    margin: 30px 40px;
+    margin: 20px 40px;
     max-width: 10000px;
     display: grid;
     align-items: center;
@@ -40,7 +40,7 @@
 }
 /* for detail film */
 #detail_film_container{
-    margin: 30px 0px;
+    margin: 20px 0px;
 }
 
 .films__container-item{
@@ -102,4 +102,30 @@
 .activex{
   background:var(--orange);
   color:var(--white);
+}
+/* css filter movies */
+.filter_movies {
+  display: flex;
+  justify-content: end;
+  margin-right: 30px;
+}
+.filter_movies>select{
+  margin-right: 10px;
+  margin-top: 10px;
+  background-color: var(--orange);
+  color: var(--white);
+  border: none;
+  position: relative;
+  font-size: 1rem;
+	font-weight: normal;
+	padding: 8px 8px 8px 10px;
+	border: none;
+ 
+}
+.filter_movies>select:hover{
+  opacity: 0.8;
+}
+select:active , select:focus{
+  outline: none;
+	box-shadow: none;
 }

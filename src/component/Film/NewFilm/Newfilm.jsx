@@ -22,7 +22,7 @@ export default function Newfilm() {
             Phim Trung Quốc
         </p>
         <div className="films__container">
-          {chinese_movies && chinese_movies.map((movie) => (
+          {chinese_movies && chinese_movies.slice(0,6).map((movie) => (
                <div data-aos="fade-up" className="films__container-item" key={movie.movie.slug}>
                     <Link to={`/films/${movie.movie.slug}`}>
                     <img className='films__img' src={movie.movie.thumb_url} alt="" />
@@ -46,7 +46,7 @@ export default function Newfilm() {
             Phim Tình Cảm
         </p>
         <div className="films__container">
-          {chinese_movies && chinese_movies.map((movie) => (
+          {chinese_movies && chinese_movies.slice(0,6).map((movie) => (
                <div data-aos="fade-up" className="films__container-item" key={movie.movie._id}>
                     <Link to={`/films/${movie.movie.slug}`}>
                     <img className='films__img' src={movie.movie.thumb_url} alt="" />

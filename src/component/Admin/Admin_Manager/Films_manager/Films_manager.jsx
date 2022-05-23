@@ -147,10 +147,11 @@ export default function Films_manager() {
     setTimeout(() => {
       window.location.reload();
       
-    }, 2400);
+    }, 500);
   }
   const toggleAdd = () => {
     setActive_add(!active_add)
+
     
   }
   const Addtt = (id) => {
@@ -165,6 +166,8 @@ export default function Films_manager() {
     setAddvideo(thisFilm.link_embed)
     setAddcountry(thisFilm.movie.country[0].name)
     setAddtype(thisFilm.movie.category[0].name)
+    window.scrollTo(0, 0)
+
     
   }
   const Remove_tt = () => {
