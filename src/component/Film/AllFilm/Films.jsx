@@ -19,7 +19,7 @@ export default function Films() {
   const [type,setType] = useState('Thể loại')
 
   useEffect(() => {
-    Aos.init({duration: 2000})
+    Aos.init({duration: 1000})
     window.scrollTo(0, 0)
     setMovies(moviesContext.movies)
   },[moviesContext])

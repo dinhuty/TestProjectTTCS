@@ -11,7 +11,7 @@ export default function Authadmin() {
     password: ''
   })
   const handlAuthAdmin = () =>{
-    if (admin.name === 'admin' && admin.password === '220201'){
+    if (admin.name === 'admin' && admin.password === 'admin'){
       SaveTokenAdmin({
         authentication : true
       })

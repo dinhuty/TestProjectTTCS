@@ -17,8 +17,7 @@ export default function Films_manager() {
   const [active_add , setActive_add] = useState(false)
   const [active_edit , setActive_edit] = useState(false)
   const [movieID,setMovieID] = useState('1')
-
-  
+  const [loading, setLoading]  = useState(false)  
   const handleAddFilm = (e) =>{
     e.preventDefault();
 
@@ -75,9 +74,9 @@ export default function Films_manager() {
         link_embed : addvideo
     })
     setActive_add(!active_add)
-    // setTimeout(() => {
-    //   window.location.reload();      
-    // }, 500);
+    setTimeout(() => {
+      window.location.reload();      
+    }, 500);
 
   }
 
@@ -143,7 +142,6 @@ export default function Films_manager() {
         link_embed : addvideo
     })
     setActive_edit(false)
-
     setTimeout(() => {
       window.location.reload();
       
@@ -265,16 +263,18 @@ export default function Films_manager() {
           <p>Quốc gia</p>
           <select id="addcountry" value={addcountry} 
                 onChange={(e) => setAddcountry(e.target.value)}>
-          <option value="Hàn Quốc">Hàn Quốc</option>
+           <option value="Hàn Quốc">Hàn Quốc</option>
           <option value="Trung Quốc">Trung Quốc</option>
           <option value="Nhật Bản">Nhật Bản</option>
+          <option value="Âu Mỹ">Âu Mỹ</option>
+          <option value="Thái Lan">Thái Lan</option>
         </select>
           </div>
         <div>
         <p>Thể loại</p>
         <select id="addtype" value={addtype} 
                 onChange={(e) => setAddtype(e.target.value)}>
-          <option value="Hành Động">Hành Động</option>
+           <option value="Hành Động">Hành Động</option>
           <option value="Tình Cảm">Tình Cảm</option>
           <option value="Hài Hước">Hài Hước</option>
           <option value="Tâm Lý">Tâm Lý</option>
